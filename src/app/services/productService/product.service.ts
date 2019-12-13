@@ -2,7 +2,6 @@ import { Products } from './../../models/base/Product.models';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProductsGubeeDTO } from './../../models/PoductGubeeDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,26 +13,21 @@ export class ProductService {
 
   public getProducts(): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://back-end-gubee.herokuapp.com/service');
-  }
-
-  public getProductsGubee(): Observable<ProductsGubeeDTO[]> {
-    return this.http.get<ProductsGubeeDTO[]>
-    ('https://jsonstorage.net/api/items/998ce6f5-c6f8-47a2-b40a-e773fe5dc8ee');
+    ('http://localhost:8081/service');
   }
 
   public getProductsperName(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://back-end-gubee.herokuapp.com/service/productpername/' + name);
+    ('https://jsonstorage.net/api/items/73cab4d7-6481-4d75-bcf6-a746f16ef1f7' + name);
   }
 
   public getProductsperNameTechnology(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://back-end-gubee.herokuapp.com/service/productpertechnology/' + name);
+    ('https://jsonstorage.net/api/items/73cab4d7-6481-4d75-bcf6-a746f16ef1f7/' + name);
   }
 
   public getProductsperNameTarget(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://back-end-gubee.herokuapp.com/service/productpertarget/' + name);
+    ('https://jsonstorage.net/api/items/73cab4d7-6481-4d75-bcf6-a746f16ef1f7/' + name);
   }
 }

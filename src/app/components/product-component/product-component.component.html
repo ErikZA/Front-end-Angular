@@ -35,17 +35,17 @@
               </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let Gubeeproduct of gubee" >
-                      <td>{{Gubeeproduct.productName}}</td>
+                  <tr *ngFor="let Gubeeproduct of products" >
+                      <td>{{Gubeeproduct.name}}</td>
                       <td>{{Gubeeproduct.description}}</td>
                       <td>
-                        <ul *ngFor="let technology of Gubeeproduct.stack" >
-                          <li>{{technology}}</li>
+                        <ul *ngFor="let technology of Gubeeproduct.technologies" >
+                          <li>{{technology.name}}</li>
                         </ul>
                       </td>
                       <td>
-                        <ul *ngFor="let target of Gubeeproduct.targetMarket">
-                          <li>{{target}}</li>
+                        <ul *ngFor="let target of Gubeeproduct.targets">
+                          <li>{{target.name}}</li>
                         </ul>
                       </td>
                   </tr>

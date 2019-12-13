@@ -1,4 +1,3 @@
-import { ProductsGubeeDTO } from './../../models/PoductGubeeDTO.model';
 import { Products } from './../../models/base/Product.models';
 import { ProductService } from './../../services/productService/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,11 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class ProductComponentComponent implements OnInit {
 
   products: Products[];
-  gubee: ProductsGubeeDTO[];
   MyError: any;
 
   constructor(private productService: ProductService) {
-    this.getProductsGubee();
+    this.getProducts();
    }
 
   ngOnInit() {
@@ -25,16 +23,6 @@ export class ProductComponentComponent implements OnInit {
  public getProducts() {
     this.productService.getProducts().subscribe(result => {
       this.products = result;
-    },
-    error => {
-      this.MyError = error;
-      console.log(error);
-    });
-  }
-
-  public getProductsGubee() {
-    this.productService.getProductsGubee().subscribe(result => {
-      this.gubee = result;
     },
     error => {
       this.MyError = error;
