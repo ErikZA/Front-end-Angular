@@ -11,23 +11,28 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  public getService(): Observable<Products[]> {
+    return this.http.get<Products[]>
+    ('https://back-end-gubee.herokuapp.com/service');
+  }
+
   public getProducts(): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('http://localhost:8081/service');
+    ('https://back-end-gubee.herokuapp.com/service');
   }
 
   public getProductsperName(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://jsonstorage.net/api/items/73cab4d7-6481-4d75-bcf6-a746f16ef1f7' + name);
+    ('https://back-end-gubee.herokuapp.com/service/productpername/' + name);
   }
 
   public getProductsperNameTechnology(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://jsonstorage.net/api/items/73cab4d7-6481-4d75-bcf6-a746f16ef1f7/' + name);
+    ('https://back-end-gubee.herokuapp.com/service/productpernametechnology/' + name);
   }
 
   public getProductsperNameTarget(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://jsonstorage.net/api/items/73cab4d7-6481-4d75-bcf6-a746f16ef1f7/' + name);
+    ('https://back-end-gubee.herokuapp.com/service/productpernametarget/' + name);
   }
 }
