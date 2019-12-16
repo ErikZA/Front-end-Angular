@@ -11,10 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class ProductComponentComponent implements OnInit {
 
   products: Products[];
-  MyError: any;
+  words = new Array<string>();
+  itemSearch = new Array<string>();
 
   constructor(private productService: ProductService) {
-    this.getProducts();
+      this.getProducts();
    }
 
   ngOnInit() {
@@ -25,9 +26,43 @@ export class ProductComponentComponent implements OnInit {
       this.products = result;
     },
     error => {
-      this.MyError = error;
       console.log(error);
     });
   }
 
+  public getProductPerNameProduct(name: string) {
+    this.productService.getProductsperName(name).subscribe(result => {
+      this.products = result;
+      this.itemSearch.push('products');
+      this.words.push(name);
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  public getProductPerNameTechnology(name: string) {
+    this.productService.getProductsperNameTechnology(name).subscribe(result => {
+      this.products = result;
+      this.itemSearch.push('technology');
+      this.words.push(name);
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  public getProductPerNameTarget(name: string) {
+    this.productService.getProductsperNameTarget(name).subscribe(result => {
+      this.products = result;
+      this.itemSearch.push('target');
+      this.words.push(name);
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  public removeItem(name: string) {
+  }
 }

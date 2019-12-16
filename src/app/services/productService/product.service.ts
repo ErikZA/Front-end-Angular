@@ -18,12 +18,12 @@ export class ProductService {
 
   public getProducts(): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://back-end-gubee.herokuapp.com/service');
+    ('https://back-end-gubee.herokuapp.com/service/products');
   }
 
   public getProductsperName(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
-    ('https://back-end-gubee.herokuapp.com/service/productpername/' + name);
+    ('https://back-end-gubee.herokuapp.com/service/productpernamelist/' + name);
   }
 
   public getProductsperNameTechnology(name: string): Observable<Products[]> {
