@@ -21,17 +21,17 @@ export class ProductService {
     ('https://back-end-gubee.herokuapp.com/service/products');
   }
 
-  public getProductsperName(name: string): Observable<Products[]> {
+  public getProductsPerName(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
     ('https://back-end-gubee.herokuapp.com/service/productpernamelist/' + name);
   }
 
-  public getProductsperNameTechnology(name: string): Observable<Products[]> {
+  public getProductsPerNameTechnology(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
     ('https://back-end-gubee.herokuapp.com/service/productpernametechnology/' + name);
   }
 
-  public getProductsperNameTarget(name: string): Observable<Products[]> {
+  public getProductsPerNameTarget(name: string): Observable<Products[]> {
     return this.http.get<Products[]>
     ('https://back-end-gubee.herokuapp.com/service/productpernametarget/' + name);
   }

@@ -26,7 +26,8 @@
     </form>
     <br>
     <div class="container"  >
-        <button *ngFor="let item of words" type="button" class="btn btn-outline-primary btn-sm" title="Excluir" (click)="removeItem(fazNADA)">{{ item }}</button>
+        <button *ngFor="let item of words"
+        class="btn btn-outline-primary btn-sm" title="Excluir" (click)="removeItem(item)">{{item}}</button>
     </div>
 
     <br>

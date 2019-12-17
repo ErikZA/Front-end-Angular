@@ -1,6 +1,8 @@
+import * as _ from 'lodash';
 import { Products } from './../../models/base/Product.models';
 import { ProductService } from './../../services/productService/product.service';
 import { Component, OnInit } from '@angular/core';
+
 
 
 @Component({
@@ -10,20 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponentComponent implements OnInit {
 
-  products: Products[];
-  words = new Array<string>();
-  itemSearch = new Array<string>();
+  products: Products[] = new Array<Products>();
+  words: any[] = new Array<any>();
 
   constructor(private productService: ProductService) {
-      this.getProducts();
-   }
+    this.getProducts();
+  }
 
   ngOnInit() {
   }
 
- public getProducts() {
+ private getProducts() {
     this.productService.getProducts().subscribe(result => {
-      this.products = result;
+      console.log('Serviço Disponivel');
     },
     error => {
       console.log(error);
@@ -31,10 +32,12 @@ export class ProductComponentComponent implements OnInit {
   }
 
   public getProductPerNameProduct(name: string) {
-    this.productService.getProductsperName(name).subscribe(result => {
-      this.products = result;
-      this.itemSearch.push('products');
-      this.words.push(name);
+    this.productService.getProductsPerName(name).subscribe(result => {
+      if (this.pushItem(result)) {
+        this.words.push(name);
+      } else {
+        alert(name + ' Já está presente na busca \n Ou a Categoria Incorreta \n Ou não Foi Encontrado(a)');
+      }
     },
     error => {
       console.log(error);
@@ -42,10 +45,12 @@ export class ProductComponentComponent implements OnInit {
   }
 
   public getProductPerNameTechnology(name: string) {
-    this.productService.getProductsperNameTechnology(name).subscribe(result => {
-      this.products = result;
-      this.itemSearch.push('technology');
-      this.words.push(name);
+    this.productService.getProductsPerNameTechnology(name).subscribe(result => {
+      if (this.pushItem(result)) {
+        this.words.push(name);
+      } else {
+        alert(name + ' Já está presente na busca \n Ou a Categoria Incorreta \n Ou não Foi Encontrado(a)');
+      }
     },
     error => {
       console.log(error);
@@ -53,16 +58,29 @@ export class ProductComponentComponent implements OnInit {
   }
 
   public getProductPerNameTarget(name: string) {
-    this.productService.getProductsperNameTarget(name).subscribe(result => {
-      this.products = result;
-      this.itemSearch.push('target');
-      this.words.push(name);
+    this.productService.getProductsPerNameTarget(name).subscribe(result => {
+      if (this.pushItem(result)) {
+        this.words.push(name);
+      } else {
+        alert(name + ' Já está presente na busca \n Ou a Categoria Incorreta \n Ou não Foi Encontrado(a)');
+      }
     },
     error => {
       console.log(error);
     });
   }
 
+  private pushItem(listProducts: Products[]) {
+    const aux: Products[] = _.differenceBy(listProducts, this.products, 'id');
+    if (aux.length > 0) {
+     aux.forEach( pdt => this.products.push(pdt) );
+     return true;
+    }
+    return false;
+  }
+
   public removeItem(name: string) {
+    this.words = this.words.filter(wds => wds !== name);
+    //this.products = [];
   }
 }
